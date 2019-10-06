@@ -1,0 +1,10 @@
+{
+    "usingComponents": {
+        "i-cell-group": "/assets/iview-weapp/cell-group/index",
+        "i-cell": "/assets/iview-weapp/cell/index",
+        "i-panel": "/assets/iview-weapp/panel/index",
+        "i-collapse": "/assets/iview-weapp/collapse/index",
+        "i-collapse-item": "/assets/iview-weapp/collapse-item/index",
+        "i-card": "/assets/iview-weapp/card/index"
+    }
+}

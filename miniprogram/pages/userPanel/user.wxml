@@ -1,0 +1,13 @@
+<!--miniprogram/pages/userPanel/user.wxml-->
+<i-panel class="cell-panel-demo" title="带 icon 的 Cell">
+    <i-cell title="单行列表" value="详细信息">
+        <i-icon type="like_fill" slot="icon" />
+    </i-cell>
+</i-panel>
+
+<i-panel class="cell-panel-demo" title="帮助和提示">
+    <i-cell-group>
+        <i-cell title="Dice 骰子" is-link url="/pages/tools/dice"></i-cell>
+        <i-cell title="..." is-link></i-cell>
+    </i-cell-group>
+</i-panel>

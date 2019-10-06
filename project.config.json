@@ -11,6 +11,7 @@
 		"coverView": true,
 		"nodeModules": true,
 		"autoAudits": false,
+		"uglifyFileName": true,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -18,8 +19,7 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		},
-		"uglifyFileName": true
+		}
 	},
 	"appid": "wxad4c1d864dc6f96a",
 	"projectname": "wechat-coc",

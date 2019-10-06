@@ -1,0 +1,23 @@
+{
+  "name": "wechat-coc",
+  "version": "0.7.0",
+  "description": "这是云开发的快速启动指引，其中演示了如何上手使用云开发的三大基础能力：",
+  "main": "miniprogram/app.js",
+  "dependencies": {
+    "iview-weapp": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dorence/wechat-coc.git"
+  },
+  "author": "Dorence DENG",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dorence/wechat-coc/issues"
+  },
+  "homepage": "https://github.com/Dorence/wechat-coc#readme"
+}

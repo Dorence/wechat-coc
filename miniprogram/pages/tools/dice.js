@@ -5,7 +5,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        collapseName: 'name1'
+        collapseName: 'name1',
+        collapseDisc: false
     },
 
     /**
@@ -62,5 +63,12 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+
+    toggleDisc(e){
+        console.log(this.data.collapseDisc);
+        this.setData({
+            collapseDisc: !this.data.collapseDisc
+        });
     }
 })

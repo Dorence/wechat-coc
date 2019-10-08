@@ -1,21 +1,19 @@
-<!--miniprogram/pages/tools/dice.wxml-->
-<view class="caption-wrap">
-    <text class="caption-title">折叠面板</text>
-    <i-collapse i-class="caption-body" name="{{collapseName}}">
-        <i-collapse-item title=" COC中的骰子" name="name1" i-class-title="collapse-item-title" i-class-content="collapse-item-content">
-            <view slot="content">
-                游戏中需要百分骰（D100），四面骰（D4），六面骰（D6），八面骰（D8），和二十面骰（D20）。为了游戏顺利，建议守秘人和玩家各自准备一套骰子。字母D的意思是骰子(Dice)的D。后面的数字代表骰子的面数。
-            </view>
-        </i-collapse-item>
-        <i-collapse-item title="斯蒂夫·盖瑞·沃兹尼亚克" name="name2">
-            <view slot="content" i-class-content="green-text">
-                斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。
-            </view>
-        </i-collapse-item>
-        <i-collapse-item title="乔纳森·伊夫" name="name3">
-            <view slot="content">
-                乔纳森·伊夫是一位工业设计师，现任Apple公司设计师兼资深副总裁，英国爵士。他曾参与设计了iPod，iMac，iPhone，iPad等众多苹果产品。除了乔布斯，他是对苹果那些著名的产品最有影响力的人。
-            </view>
-        </i-collapse-item>
-    </i-collapse>
+<!--pages/tools/dice.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isCustom="{{true}}">
+    <view slot="content">骰子</view>
+</cu-custom>
+
+<view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action" bindtap="toggleDisc">
+        <text class="cuIcon-{{collapseDisc?'unfold':'right'}} text-black" decode>&nbsp;COC中的骰子</text>
+    </view>
+</view>
+<view wx:if="{{collapseDisc}}" class="bg-white padding">
+    <view class="bg-gray padding-sm radius">游戏中需要百分骰（D100），四面骰（D4），六面骰（D6），八面骰（D8），和二十面骰（D20）。字母D的意思是骰子(Dice)。后面的数字代表骰子的面数。为了游戏顺利，建议守秘人和玩家各自准备一套骰子。</view>
+</view>
+
+<view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+        <text class="cuIcon-titles text-black" decode>&nbsp;骰子表达式</text>
+    </view>
 </view>

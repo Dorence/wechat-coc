@@ -2840,6 +2840,11 @@ scroll-view.cu-steps .cu-item {
 	flex-basis: 80%;
 }
 
+.basix-fx {
+    /** @notice This class is added personally. */
+    flex-basis: 100%;
+}
+
 .flex-sub {
 	flex: 1;
 }

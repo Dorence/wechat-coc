@@ -19,8 +19,24 @@
     }
 
     DICE.parse = (str) => {
-        str = str.replace(/[\s\n\r]+/, "");
+        str = str.replace(/[\s\n\r]+/, "").toLowerCase();
         // console.log("trim", str, str.length);
+
+        try {
+            let lexed = DICE.mexp.lex(str);
+            // console.log("lexed", lexed);
+            return {
+                error: false,
+                msg: lexed
+            };
+        } catch (e) {
+            return {
+                error: true,
+                msg: e.message
+            };
+        }
+
+        /* mannual parse
         let par = [],
             pos = 0,
             ss, num;
@@ -87,7 +103,7 @@
                         x: left,
                         y: right
                     });
-                    i++;
+                    par[++i] = undefined;
                     break;
                 case "D":
                     left = (typeof par[i - 1] === "number") ? Math.round(par[i - 1]) : 1;
@@ -128,6 +144,13 @@
                     }
                     i++;
                     break;
+
+                case "+":
+                case "*":
+                case "(":
+                case ")":
+                    tmp.push(par[i]);
+                    break;
                 default:
                     if (par[i + 1] !== "d" && par[i + 1] !== "D") {
                         tmp.push(par[i]);
@@ -141,7 +164,7 @@
         return {
             error: false,
             msg: par
-        };
+        }; */
     };
 
     DICE.eval = (arr) => {
@@ -155,6 +178,54 @@
         }
         return DICE.mexp.eval("(" + str + ")");
     };
+
+    DICE.analyse = (arr) => {
+
+    }
+
+    DICE.diceRichText = (arr) => {
+        let rich = [],
+            addClass = "";
+        for (let i = 1; i + 1 < arr.length; i++) {
+            switch (arr[i].show) {
+                case "+":
+                case "*":
+                case "&times;":
+                    addClass = " bg-green round";
+                    break;
+                case "(":
+                case ")":
+                    addClass = " bg-mauve light radius";
+                    break;
+                case "d":
+                case "D":
+                    addClass = " bg-red light round"
+                    break;
+                default:
+                    addClass = " bg-grey";
+                    break;
+            }
+            rich.push({
+                name: "div",
+                attrs: {
+                    class: "cu-tag " + addClass,
+                    style: "margin-right: 1px;"
+                },
+                children: [{
+                    type: 'text',
+                    text: (typeof arr[i].value === "number") ? (arr[i].value + "") : arr[i].show
+                }]
+            });
+        }
+        return rich;
+    }
+
+    DICE.mexp.addToken([{
+        type: 2,
+        token: "d",
+        show: "d",
+        value: DICE.dice
+    }]);
 
     module.exports = DICE;
 })();

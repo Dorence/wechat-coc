@@ -10,8 +10,8 @@ Page({
         collapseName: 'name1',
         collapseDisc: false,
         editorCtx: null,
-        exp: "",
-        input: ""
+        exp: [],
+        input: "(3d8)*10D7+5"
     },
 
     /**
@@ -86,20 +86,41 @@ Page({
     },
 
     tapDel(e) {
-        const t = this.data.input.substr(this.data.input.length - 1);
-        this.setData({
-            input: t
-        });
+        if (this.data.input.length) {
+            this.setData({
+                input: this.data.input.substr(0, this.data.input.length - 1)
+            });
+        }
     },
 
     tapSure(e) {
         const that = this;
 
+        this.setData({
+            exp: [{
+                type: "text",
+                text: "解析中"
+            }]
+        });
+
         let p = Dice.parse(this.data.input);
         console.log(p);
         if (!p.error) {
-            console.log(Dice.eval(p.msg));
-            console.log(Dice.eval(p.msg));
+            let post = p.msg.toPostfix();
+            console.log(post.postfixEval());
+            console.log(post.postfixEval());
+
+            let rich = Dice.diceRichText(p.msg.value);
+            if (!rich.error) {
+                console.log("rich", rich);
+                this.setData({
+                    exp: rich
+                });
+            }
+        } else {
+            this.setData({
+                exp: p.msg
+            });
         }
 
     }

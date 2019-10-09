@@ -36,7 +36,7 @@
         </view>
         比如 3d6 相当于三个六面骰的点数之和。注意 {x} 必须是正整数, {y} 必须是大于一的整数。
     </view>
-    <view class="bg-gray margin-tb-xs padding-sm radius">2.游戏中的骰子用大写字母表示，即为 1D4, 1D6, 1D8, 1D10（某些D100中含有十面骰）, 1D20, 1D100。其中特殊的是 1D100 相当于 1d100 - 1，即取值为0至99；换言之，除了 1D100，其余情况下 D/d 的含义相同。</view>
+    <view class="bg-gray margin-tb-xs padding-sm radius">2.游戏中的骰子用大写字母表示，即为 1D4, 1D6, 1D8, 1D10（某些D100中含有十面骰）, 1D20, 1D100。其中特殊的是 1D100 相当于 1d100 - 1，即取值为 00 至 99 ，但是我们在此处将 00 处理成 100，则 D 仍然与 d 的含义相同。</view>
     <view class="bg-gray margin-tb-xs padding-sm radius">3.表达式中可以使用加号和乘号。但是 D/d 的运算优先级最高，也就是说 D/d 将被优先计算。</view>
     <view class="bg-gray margin-tb-xs padding-sm radius">下面是一个骰子表达式计算器，你可以输入表达式，然后点击“解析”即可验证表达式是否合法。</view>
 </view>
@@ -47,10 +47,11 @@
     </view>
 </view>
 <view class="bg-white padding">
-    <view class="bg-gray padding-sm radius">
-
-        <rich-text>{{exp}}</rich-text>
-        <view>{{input}}</view>
+    <view class="bg-gray margin-tb-sm padding-sm radius">
+        <rich-text nodes="{{exp}}"></rich-text>
+    </view>
+    <view class="bg-gray padding-sm radius" style="min-height: 46px;">
+        <view style="color: #000; font-size: 20px;">{{input}}</view>
     </view>
 </view>
 

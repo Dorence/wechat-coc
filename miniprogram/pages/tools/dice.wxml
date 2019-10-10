@@ -4,7 +4,7 @@
 </cu-custom>
 
 <view class="cu-bar bg-white solid-bottom margin-top">
-    <view class="action" bindtap="toggleDisc">
+    <view class="action" bindtap="toggleCollapse" data-collapse="collapseDisc">
         <text class="cuIcon-{{collapseDisc?'unfold':'right'}} text-black" decode>&nbsp;COC中的骰子</text>
     </view>
 </view>
@@ -13,12 +13,12 @@
 </view>
 
 <view class="cu-bar bg-white solid-bottom margin-top">
-    <view class="action">
-        <text class="cuIcon-titles text-black" decode>&nbsp;骰子表达式</text>
+    <view class="action" bindtap="toggleCollapse" data-collapse="collapseRule">
+        <text class="cuIcon-{{collapseRule?'unfold':'right'}} text-black" decode>&nbsp;骰子表达式</text>
     </view>
 </view>
-<view class="bg-white padding">
-    <view class="bg-gray margin-tb-xs padding-sm radius">本程序中为了便于表达检定结果，创造了“骰子表达式”。骰子表达式并不难理解，主要规则如下：</view>
+<view wx:if="{{collapseRule}}" class="bg-white padding">
+    <view class="bg-gray margin-tb-xs padding-sm radius">为了便于表达检定结果，本程序创造了“骰子表达式”。骰子表达式并不难理解，主要规则如下：</view>
     <view class="bg-gray margin-tb-xs padding-sm radius">1. 使用
         <text class="text-bold">{x}d{y}</text> 表示广义的骰子（此处即下文中的变量都使用大括号{}标识），相当于
         <view class="padding-left-lg margin-top-sm">a.投 {x} 次 {y} 面骰子</view>
@@ -36,7 +36,8 @@
         </view>
         比如 3d6 相当于三个六面骰的点数之和。注意 {x} 必须是正整数, {y} 必须是大于一的整数。
     </view>
-    <view class="bg-gray margin-tb-xs padding-sm radius">2.游戏中的骰子用大写字母表示，即为 1D4, 1D6, 1D8, 1D10（某些D100中含有十面骰）, 1D20, 1D100。其中特殊的是 1D100 相当于 1d100 - 1，即取值为 00 至 99 ，但是我们在此处将 00 处理成 100，则 D 仍然与 d 的含义相同。</view>
+    <view class="bg-gray margin-tb-xs padding-sm radius">2.游戏中的骰子用大写字母表示，即为 1D4, 1D6, 1D8, 1D10（某些D100中含有十面骰）, 1D20, 1D100。其中特殊的是 1D100 相当于 1d100 - 1，即取值为 00 至 99 ，但是我们在此处
+        <text class="text-bold">将 00 处理成 100</text>，则 D 仍然与 d 的含义相同。</view>
     <view class="bg-gray margin-tb-xs padding-sm radius">3.表达式中可以使用加号和乘号。但是 D/d 的运算优先级最高，也就是说 D/d 将被优先计算。</view>
     <view class="bg-gray margin-tb-xs padding-sm radius">下面是一个骰子表达式计算器，你可以输入表达式，然后点击“解析”即可验证表达式是否合法。</view>
 </view>
@@ -56,24 +57,30 @@
 </view>
 
 <view class="flex">
-    <view class="flex-treble grid col-3">
-        <view class="kb-number text-center nbor" data-text="1" bind:tap="tapNum">1</view>
+    <view class="flex-treble grid col-4">
+        <view class="kb-number text-center" data-text="(" bind:tap="tapNum">(</view>
+        <view class="kb-number text-center" data-text=")" bind:tap="tapNum">)</view>
+        <view class="kb-number text-center" data-text="/" bind:tap="tapNum">÷</view>
+        <view class="kb-button text-center cuIcon-backdelete" bind:tap="tapDel"></view>
+
+        <view class="kb-number text-center" data-text="1" bind:tap="tapNum">1</view>
         <view class="kb-number text-center" data-text="2" bind:tap="tapNum">2</view>
         <view class="kb-number text-center" data-text="3" bind:tap="tapNum">3</view>
-        <view class="kb-number text-center nbor" data-text="4" bind:tap="tapNum">4</view>
+        <view class="kb-number text-center" data-text="*" bind:tap="tapNum">×</view>
+
+        <view class="kb-number text-center" data-text="4" bind:tap="tapNum">4</view>
         <view class="kb-number text-center" data-text="5" bind:tap="tapNum">5</view>
         <view class="kb-number text-center" data-text="6" bind:tap="tapNum">6</view>
-        <view class="kb-number text-center nbor" data-text="7" bind:tap="tapNum">7</view>
+        <view class="kb-number text-center cuIcon-move" data-text="-" bind:tap="tapNum"></view>
+
+        <view class="kb-number text-center" data-text="7" bind:tap="tapNum">7</view>
         <view class="kb-number text-center" data-text="8" bind:tap="tapNum">8</view>
         <view class="kb-number text-center" data-text="9" bind:tap="tapNum">9</view>
+        <view class="kb-number text-center cuIcon-add" data-text="+" bind:tap="tapNum"></view>
+
         <view class="kb-number text-center" data-text="." bind:tap="tapNum">.</view>
         <view class="kb-number text-center" data-text="0" bind:tap="tapNum">0</view>
         <view class="kb-button text-center" data-text="d" bind:tap="tapNum">d</view>
-    </view>
-    <view class="flex-sub">
-        <view class="kb-button text-center cuIcon-backdelete" bind:tap="tapDel"></view>
-        <view class="kb-number text-center" data-text="*" bind:tap="tapNum">*</view>
-        <view class="kb-number text-center" data-text="+" bind:tap="tapNum">+</view>
         <view class="kb-button text-center" bind:tap="tapSure">解析</view>
     </view>
 </view>

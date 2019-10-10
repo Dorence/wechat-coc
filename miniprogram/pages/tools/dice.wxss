@@ -2,7 +2,7 @@
 
 .kb-number {
     background-color: var(--white);
-    border: 0.3px solid var(--grey);
+    border: 1rpx solid var(--greyLight);
     font-size: 24px;
     height: 50px;
     line-height: 50px;
@@ -10,9 +10,9 @@
 }
 
 .kb-button {
-    background-color: var(--blue);
-    color: var(--white);
-    border: 0.3px solid var(--grey);
+    background-color: var(--blueLight);
+    color: var(--blue);
+    border: 1rpx solid var(--greyLight);
     font-size: 24px;
     font-weight: 400;
     height: 50px;

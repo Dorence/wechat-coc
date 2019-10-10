@@ -1,5 +1,6 @@
 // miniprogram/pages/tools/dice.js
-const Dice = require("../../utils/dice");
+let Dice = require("../../utils/dice");
+const testRunNum = 20;
 
 Page({
 
@@ -7,24 +8,24 @@ Page({
      * 页面的初始数据
      */
     data: {
-        collapseName: 'name1',
         collapseDisc: false,
+        collapseRule: false,
         editorCtx: null,
         exp: [],
-        input: "(3d8)*10D7+5"
+        input: "1d100"
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
-
-    },
+    onLoad: function(options) {},
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {},
+    onReady: function() {
+        console.info("Dice", Dice);
+    },
 
     /**
      * 生命周期函数--监听页面显示
@@ -71,10 +72,11 @@ Page({
 
     },
 
-    toggleDisc(e) {
-        console.log(this.data.collapseDisc);
+    toggleCollapse(e) {
+        const member = e.currentTarget.dataset.collapse;
+        console.log(this.data[member]);
         this.setData({
-            collapseDisc: !this.data.collapseDisc
+            [member]: !this.data[member]
         });
     },
 
@@ -94,8 +96,6 @@ Page({
     },
 
     tapSure(e) {
-        const that = this;
-
         this.setData({
             exp: [{
                 type: "text",
@@ -104,24 +104,23 @@ Page({
         });
 
         let p = Dice.parse(this.data.input);
-        console.log(p);
         if (!p.error) {
-            let post = p.msg.toPostfix();
-            console.log(post.postfixEval());
-            console.log(post.postfixEval());
-
             let rich = Dice.diceRichText(p.msg.value);
             if (!rich.error) {
-                console.log("rich", rich);
+                rich.push(Dice.analyse(p.msg, testRunNum));
+                // console.info("rich", rich);
                 this.setData({
                     exp: rich
                 });
             }
         } else {
             this.setData({
-                exp: p.msg
+                exp: [{
+                    type: "text",
+                    text: p.msg
+                }]
             });
         }
-
+        return;
     }
 });

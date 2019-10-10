@@ -49,6 +49,11 @@
 					"id": -1,
 					"name": "db guide",
 					"pathName": "pages/databaseGuide/databaseGuide"
+				},
+				{
+					"id": 0,
+					"name": "index",
+					"pathName": "pages/index/index"
 				}
 			]
 		}

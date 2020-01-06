@@ -17,7 +17,7 @@ Component({
     let i = 0;
     numDH();
     function numDH() {
-      if (i < 20) {
+      if (i < 40) {
         setTimeout(function () {
           that.setData({
             starCount: i,
@@ -26,7 +26,7 @@ Component({
           })
           i++
           numDH();
-        }, 20)
+        }, 30)
       } else {
         that.setData({
           starCount: that.coutNum(3000),
@@ -67,12 +67,6 @@ Component({
       this.setData({
         modalName: null
       })
-    },
-    showQrcode() {
-      wx.previewImage({
-        urls: ['https://image.weilanwl.com/color2.0/zanCode.jpg'],
-        current: 'https://image.weilanwl.com/color2.0/zanCode.jpg' // 当前显示图片的http链接      
-      })
-    },
+    }
   }
 })

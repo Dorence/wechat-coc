@@ -36,9 +36,7 @@ Mexp.math = {
         }
         return pro / Mexp.math.fact(other)
     },
-    changeSign: function (x) {
-        return -x
-    },
+    changeSign: function (x) { return -x },
     cos: function (x) {
         if (Mexp.math.isDegree) x = Mexp.math.toRadian(x)
         return Math.cos(x)
@@ -143,7 +141,7 @@ var type = [0, 0, 0, 3, 4, 5, 10, 10, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 10, 0, 1, 1,
 5 : closing bracket
 6 : decimal
 7 : function with syntax (Math_exp)function_name
-8: function with syntax function_name(Math_exp1,Math_exp2)
+8 : function with syntax function_name(Math_exp1,Math_exp2)
 9 : binary operator like +,-
 10: binary operator like P C or ^
 11: ,
@@ -205,12 +203,7 @@ Mexp.lex = function (inp, tokens) {
     'use strict'
     var changeSignObj = {value: Mexp.math.changeSign, type: 0, pre: 21, show: '-'}
     var closingParObj = {value: ')', show: ')', type: 5, pre: 0}
-    var openingParObj = {
-        value: '(',
-        type: 4,
-        pre: 0,
-        show: '('
-    }
+    var openingParObj = {value: '(', type: 4, pre: 0, show: '('}
     var str = [openingParObj]
     var ptc = [] // Parenthesis to close at the beginning is after one token
     var inpStr = inp
@@ -416,7 +409,7 @@ Mexp.lex = function (inp, tokens) {
     }
 
     str.push(closingParObj)
-    //        console.log(str);
+    // console.log(str);
     return new Mexp(str)
 }
 

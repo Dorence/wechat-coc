@@ -1,46 +1,42 @@
 .UCenter-bg {
-  background-image: url(https://image.weilanwl.com/color2.0/index.jpg);
-  background-size: cover;
-  height: 550rpx;
-  display: flex;
-  justify-content: center;
-  padding-top: 40rpx;
-  overflow: hidden;
-  position: relative;
-  flex-direction: column;
-  align-items: center;
-  color: #fff;
-  font-weight: 300;
-  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    align-items: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    font-weight: 300;
+    height: 550rpx;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: 42rpx;
+    position: relative;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.UCenter-bg .background {
+    width: 100%;
+    height: 602rpx;
+    position: fixed;
+    z-index: -1;
 }
 
 .UCenter-bg text {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
-.UCenter-bg image {
-  width: 200rpx;
-  height: 200rpx;
+.UCenter-bg .logo {
+    width: 400rpx;
+    height: 200rpx;
+    margin-bottom: 10px;
 }
 
-.UCenter-bg .gif-wave{
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  z-index: 99;
-  mix-blend-mode: screen;  
-  height: 100rpx;   
+map, .mapBox {
+    left: 0;
+    z-index: 99;
+    mix-blend-mode: screen;
+    height: 100rpx;
 }
 
-map,.mapBox{
-  left: 0;
-  z-index: 99;
-  mix-blend-mode: screen;  
-  height: 100rpx;   
-}
-
-map,.mapBox{
-  width: 750rpx;
-  height: 300rpx;
+map, .mapBox {
+    width: 750rpx;
+    height: 300rpx;
 }

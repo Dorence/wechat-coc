@@ -10,7 +10,7 @@
 
     DICE.dice = (x, y) => {
         if (!DICE.isDiceNumber(x, y)) {
-            return false;
+            throw (new DICE.mexp.Exception("骰子范围错误"));
         } else {
             let ans = x;
             for (let i = 0; i < x; i++)
@@ -20,7 +20,7 @@
     }
 
     DICE.parse = (str) => {
-        str = str.replace(/[\s\n\r]+/, "").toLowerCase();
+        str = str.replace(/[\s\n\r]+/, "")//.toLowerCase();
         // console.log("trim", str, str.length);
         try {
             let lexed = DICE.mexp.lex(str);
@@ -120,11 +120,22 @@
     }
 
     DICE.mexp.addToken([{
-        type: 2,
+        type: 0,
+        token: "D",
+        show: "D",
+        value: (a) => {
+            if (a === 100) {
+                return DICE.dice(1, a) - 1;
+            } else {
+                return DICE.dice(1, a);
+            }
+        }
+    }, {
+        type: 10,
         token: "d",
         show: "d",
         value: DICE.dice
-    }]);
+    } ]);
 
     module.exports = DICE;
 })();

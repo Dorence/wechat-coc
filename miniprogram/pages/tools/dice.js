@@ -9,10 +9,10 @@ Page({
      */
     data: {
         collapseDisc: false,
-        collapseRule: false,
+        collapseRule: true,
         editorCtx: null,
         exp: [],
-        input: "1d100"
+        input: "3d6 * D2"
     },
 
     /**
